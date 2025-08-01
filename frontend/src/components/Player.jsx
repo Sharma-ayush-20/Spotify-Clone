@@ -39,7 +39,7 @@ function Player() {
                 <div className='flex gap-5 items-center'>
                     <p>{time.currentTime.minute}:{time.currentTime.second}</p>
                     <div ref={seekBg} className='w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer'>
-                        <hr ref={seekBar} className='h-1 border-none bg-green-800 rounded-full w-30'/>
+                        <hr ref={seekBar} className='h-1 border-none bg-green-800 rounded-full w-0'/>
                     </div>
                     <p>{time.totalTime.minute}:{time.totalTime.second}</p>
                 </div>
