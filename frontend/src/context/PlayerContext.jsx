@@ -34,6 +34,7 @@ export const PlayerContextProvider = (props) => {
         setPlayStatus(false)
     }
 
+    //check songs and accordingly set time in minutes and second
     useEffect(() => {
         setTimeout(() => {
             audioRef.current.ontimeupdate = () => {
