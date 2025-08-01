@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { songsData } from "../assets/assets";
 
 export const PlayerContext = createContext("")
@@ -34,6 +34,23 @@ export const PlayerContextProvider = (props) => {
         setPlayStatus(false)
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            audioRef.current.ontimeupdate = () => {
+                setTime({
+                    currentTime: {
+                        second: Math.floor(audioRef.current.currentTime % 60),
+                        minute: Math.floor(audioRef.current.currentTime / 60),
+                    },
+                    totalTime: {
+                        second: Math.floor(audioRef.current.duration % 60),
+                        minute: Math.floor(audioRef.current.duration / 60),
+                    }
+                })
+            }
+        }, 1000)
+    }, [audioRef])
+
     const value = {
         audioRef,
         seekBar,
@@ -45,7 +62,7 @@ export const PlayerContextProvider = (props) => {
     }
 
     return (
-        <PlayerContext.Provider value = {value}>
+        <PlayerContext.Provider value={value}>
             {props.children}
         </PlayerContext.Provider>
     )
