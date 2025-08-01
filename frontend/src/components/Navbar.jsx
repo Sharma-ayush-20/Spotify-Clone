@@ -1,7 +1,10 @@
 import React from 'react'
 import { assets } from '../assets/assets.js'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
+
+    const navigate = useNavigate();
     return (
         <>
         
@@ -9,8 +12,8 @@ function Navbar() {
 
                 {/* left and right button  */}
                 <div className='flex items-center gap-2'>
-                    <img src={assets.arrow_left} alt="" className='w-8 cursor-pointer bg-black p-2 rounded-2xl' />
-                    <img src={assets.arrow_right} alt="" className='w-8 cursor-pointer bg-black p-2 rounded-2xl' />
+                    <img onClick={() => navigate(-1)} src={assets.arrow_left} alt="" className='w-8 cursor-pointer bg-black p-2 rounded-2xl' />
+                    <img onClick={() => navigate(1)} src={assets.arrow_right} alt="" className='w-8 cursor-pointer bg-black p-2 rounded-2xl' />
                 </div>
 
                 {/* explore premium and install app button with user icon */}
