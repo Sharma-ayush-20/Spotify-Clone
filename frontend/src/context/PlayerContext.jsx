@@ -9,7 +9,7 @@ export const PlayerContextProvider = (props) => {
     const seekBg = useRef() //bg of seekbar
     const seekBar = useRef() //bg of hr tag
 
-    const [track, setTrack] = useState(songsData[1]) //for each load of project track is song1
+    const [track, setTrack] = useState(songsData[0]) //for each load of project track is song1
     const [playStatus, setPlayStatus] = useState(false) //in starting playstatus is false means pause
     const [time, setTime] = useState({ //time of the songs
         currentTime: {
@@ -34,6 +34,29 @@ export const PlayerContextProvider = (props) => {
         setPlayStatus(false)
     }
 
+    //play songs with Id
+    const playWithId = async (id) => {
+        await setTrack(songsData[id])
+        await audioRef.current.play()
+        setPlayStatus(true)
+    }
+
+    const previous = async () => {
+        if(track.id > 0){
+            await setTrack(songsData[track.id - 1])
+            await audioRef.current.play()
+            setPlayStatus(true)
+        }
+    }
+
+    const next = async () => {
+        if(track.id < songsData.length - 1){
+            await setTrack(songsData[track.id + 1])
+            await audioRef.current.play()
+            setPlayStatus(true)
+        }
+    }
+
     //check songs and accordingly set time in minutes and second
     useEffect(() => {
         setTimeout(() => {
@@ -53,6 +76,7 @@ export const PlayerContextProvider = (props) => {
         }, 1000)
     }, [audioRef])
 
+
     const value = {
         audioRef,
         seekBar,
@@ -61,6 +85,8 @@ export const PlayerContextProvider = (props) => {
         playStatus, setPlayStatus,
         time, setTime,
         play, pause,
+        playWithId,
+        next, previous,
     }
 
     return (
