@@ -1,6 +1,8 @@
 import express from "express"
 import cors from "cors"
 import "dotenv/config"
+import songRouter from "./src/routes/songRoute.js"
+import connectDB from "./src/config/mongodb.js"
 
 //app config
 const app = express()
@@ -12,10 +14,18 @@ app.use(cors({
     // origin: "http://localhost:5173"
 }))
 
+//initializing routes
+app.use('/api/song', songRouter)
+
 app.get("/", (req, res) => {
     res.send("<h1>API working.</h1>")
 })
 
-app.listen(PORT, () => {
-    console.log(`Server is Listening at http://localhost:${PORT}`)
+connectDB().then(() => {
+    console.log("Database Connected Success")
+    app.listen(PORT, () => {
+        console.log(`Server is Listening at http://localhost:${PORT}`)
+    })
+}).catch((error) => {
+    console.log("Database Connection Failed", error)
 })
