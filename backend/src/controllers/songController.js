@@ -52,3 +52,31 @@ export const listSong = async (req, res) => {
         })
     }
 }
+
+export const removeSong = async (req, res) => {
+    try {
+
+        const songId = req.body.id;
+
+        if(!songId){
+            return res.json({
+                success: false,
+                message: "Please provide songId"
+            })
+        }
+
+        await songModel.findByIdAndDelete(songId)
+
+        return res.json({
+            success: true,
+            message: "Song Removed"
+        })
+        
+    } catch (error) {
+        console.log("Error ", error)
+        return res.json({
+            success: false,
+            message: error.message
+        })
+    }
+}
