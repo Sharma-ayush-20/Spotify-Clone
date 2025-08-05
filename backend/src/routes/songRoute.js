@@ -10,6 +10,6 @@ songRouter.route('/add').post(
         { name: 'audio', maxCount: 1 },
     ]),
     addSong)
-songRouter.route('/add').get(listSong)
+songRouter.route('/list').get(listSong)
 
 export default songRouter
