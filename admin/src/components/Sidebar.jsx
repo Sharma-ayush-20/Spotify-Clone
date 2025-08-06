@@ -7,10 +7,10 @@ function Sidebar() {
     return (
         <div className='bg-[#003A10] min-h-screen pl-[4vw]'>
             {/* top section  */}
-            <div className='flex pr-2'>
+            <NavLink className='flex pr-2' to='/'>
                 <img src={assets.spotify_logo} alt="" className='mt-5 w-[max(10vw, 100px)]' />
                 <h1 className='text-white font-bold text-[25px] mt-6 px-3 hidden md:block'>Spotify</h1>
-            </div>
+            </NavLink>
 
             {/* list all  */}
             <div className='flex flex-col gap-5 mt-10'>
