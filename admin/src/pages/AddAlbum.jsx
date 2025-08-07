@@ -2,7 +2,9 @@ import React from 'react'
 
 function AddAlbum() {
   return (
-    <div>AddAlbum</div>
+    <div>
+      Add Album 
+    </div>
   )
 }
 

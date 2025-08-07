@@ -45,6 +45,9 @@ import addsong from './addsong.png'
 import music from './music.png'
 import addalbum from './addalbum.png'
 import album from './album.png'
+import upload from './upload.png'
+import image from './image.png'
+import correct from './correct.png'
 
 export const assets = {
     bell_icon,
@@ -74,7 +77,10 @@ export const assets = {
     addsong,
     music,
     addalbum,
-    album
+    album,
+    upload,
+    image,
+    correct,
 }
 
 export const albumsData = [
