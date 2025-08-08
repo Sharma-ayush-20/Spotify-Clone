@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from './Navbar'
-import { albumsData, songsData } from '../assets/assets.js'
+// import { albumsData, songsData } from '../assets/assets.js'
 import AlbumItem from './AlbumItem'
 import SongItem from './SongItem.jsx'
+import { PlayerContext } from '../context/PlayerContext.jsx'
 
 function DisplayHome() {
+    const {songsData, albumsData} = useContext(PlayerContext)
     return (
         <>
             <Navbar />
@@ -14,8 +16,8 @@ function DisplayHome() {
                 <h1 className='my-5 font-bold text-2xl'>Featured Charts</h1>     
                 <div className='flex overflow-auto'>
                     {
-                        albumsData.map((item, index) => (
-                            <AlbumItem key={index} name={item.name} desc={item.desc} image={item.image} id={item.id} />
+                        albumsData?.map((item, index) => (
+                            <AlbumItem key={index} name={item.name} desc={item.desc} image={item.image} id={item._id} />
                         ))
                     }
                 </div>
@@ -26,8 +28,8 @@ function DisplayHome() {
                 <h1 className='my-5 font-bold text-2xl'>Today's biggest hits</h1>     
                 <div className='flex overflow-auto'>
                     {
-                        songsData.map((item, index) => (
-                            <SongItem key={index} name={item.name} desc={item.desc} image={item.image} id={item.id} />
+                        songsData?.map((item, index) => (
+                            <SongItem key={index} name={item.name} desc={item.desc} image={item.image} id={item._id} />
                         ))
                     }
                 </div>

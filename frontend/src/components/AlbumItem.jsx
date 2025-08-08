@@ -7,9 +7,9 @@ function AlbumItem({id, image, name, desc}) {
 
   return (
     <div onClick={() => navigate(`/album/${id}`)} className='min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26]'>
-        <img src={image} alt="" className='rounded'/>
+        <img src={image} alt="" className='rounded w-45'/>
         <p className='font-bold mt-2 mb-1'>{name}</p>
-        <p className='text-slate-200 text-sm'>{desc}</p>
+        <p className='text-slate-200 text-sm'>{desc.slice(0,30)}</p>
     </div>
   )
 }
