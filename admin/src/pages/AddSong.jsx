@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import axios from 'axios'
 import { url } from '../App';
@@ -28,7 +28,7 @@ function AddSong() {
 
       const response = await axios.post(`${url}/api/song/add`, formData)
 
-      if(response.data.success){
+      if (response.data.success) {
         toast.success(response.data.message)
         setName("");
         setDescription("");
@@ -36,7 +36,7 @@ function AddSong() {
         setAlbum("none");
         setSong(false);
       }
-      else{
+      else {
         toast.error("Something went wrong");
       }
 
@@ -46,6 +46,23 @@ function AddSong() {
     setLoading(false)
   }
 
+  const loadAlbumData = async () => {
+    try {
+      const response = await axios.get(`${url}/api/album/list`);
+      if (response.data.success) {
+        setAlbumData(response.data.albums)
+      } else {
+        toast.error("Unable to load album data")
+      }
+    } catch (error) {
+      toast.error("Error Occured")
+    }
+  }
+
+  useEffect(() => {
+    loadAlbumData();
+  }, [])
+
   return (
     <>
       {
@@ -53,7 +70,7 @@ function AddSong() {
           ? (
             <div className='grid place-items-center min-h-[80vh]'>
               <div className='w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin'>
-                
+
               </div>
             </div>
           )
@@ -95,6 +112,9 @@ function AddSong() {
                 <p>Album</p>
                 <select onChange={(e) => setAlbum(e.target.value)} defaultValue={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[150px]'>
                   <option value="none">None</option>
+                  {
+                    albumData.map((item, index) => (<option key={index} value={item.name}>{item.name}</option>))
+                  }
                 </select>
               </div>
 
