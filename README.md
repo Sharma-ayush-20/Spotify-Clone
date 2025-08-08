@@ -3,7 +3,6 @@
 ![MERN](https://img.shields.io/badge/MERN-Stack-green?style=for-the-badge)
 ![TailwindCSS](https://img.shields.io/badge/Styled_with-TailwindCSS-38B2AC?style=for-the-badge)
 ![Responsive](https://img.shields.io/badge/Responsive-Design-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 A **fully functional Spotify Clone** built with the **MERN stack** & **Tailwind CSS** 🚀 — includes a complete **Admin Panel** for managing songs and albums.  
 No external APIs were used — all songs & albums are stored in **MongoDB**.
